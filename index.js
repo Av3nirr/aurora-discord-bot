@@ -1,7 +1,8 @@
 //import all settings
 const { token } = require('./config.json')
 //import libraries
-const { Client, Intents } = require('./discord.js')
+const { Client, Intents, Collection } = require('discord.js')
+const fs = require('fs')
 
 //create Instaces
 const client = new Client({ intents: new Intents(32767)})
@@ -18,6 +19,11 @@ for (const file of commandFIles){
 client.on('interactionCreate', async interaction => {
 	if (interaction.isCommand()) handleCommand(client, interaction);
 	if (interaction.isButton()){
-        break;s
 	}
 })
+
+client.once('ready', async () => {
+    console.info(`Bot connécté en tant que ${client.user.tag} !`)
+})
+
+client.login(token)
