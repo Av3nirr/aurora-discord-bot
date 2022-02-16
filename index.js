@@ -6,6 +6,7 @@ const fs = require('fs')
 
 //import files and commands
 const handleCommand = require('./handlers/command.js')
+const handleButton = require('./handlers/buttons.js')
 
 //create Instaces
 const client = new Client({ intents: new Intents(32767)})
@@ -23,8 +24,7 @@ for (const file of commandFIles){
 //handling interractions
 client.on('interactionCreate', async interaction => {
 	if (interaction.isCommand()) handleCommand(client, interaction);
-	if (interaction.isButton()){
-	}
+	if (interaction.isButton()) handleButton(client, interaction)
 })
 
 

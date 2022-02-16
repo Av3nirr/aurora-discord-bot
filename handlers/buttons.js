@@ -1,26 +1,24 @@
-const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
+const { Interaction, Client } = require('discord.js');
 /**
  * 
  * @param {Client} client 
- * @param {CommandInteraction} interaction 
+ * @param {Interaction} interaction 
  */
-
-const handleCommand = async (client, interaction) => {
-    const command = client.commands.get(interaction.commandName)
-
-    if (!command) return;
-
+const handleButton = async (client, interaction) => {
+    const bouton = require(`../buttons/${interaction.customId}`)
     try {
-        await command.execute(interaction, client)
+        await bouton.execute(client, interaction)
     } catch (error) {
         console.error(error)
         const embed = new MessageEmbed()
             .setTitle("Erreur !")
             .setColor("#ff0000")
-            .setDescription("Une erreur s'est produite !")
-        await interaction.reply({embeds: [embed]})
+            .setDescription("Une erreur s'est produite lors de l'intéraction avec les boutons !")
+            .setFooter({
+                text: 'L\'erreur s\'est affichée dans votre console, pour toute aide veuillez nous recontacter !'})
+        await interaction.reply({embeds: [embed], ephemeral:true})
     }
 
 }
 
-module.exports = handleCommand;
+module.exports = handleButton;

@@ -2,6 +2,7 @@ const fs = require('fs');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { clientId, token, guildId } = require('./config.json');
+const { DiscordAPIError, Client } = require('discord.js');
 
 
 const commands = [];
@@ -27,7 +28,7 @@ const rest = new REST({version: '9'}).setToken(token);
 		
 
 		console.log
-		('Les commandes (/) ont été réinitialisées');
+		('Successfully reloaded application (/) commands.');
 	} catch (error) {
 		console.error(error);
 	}
