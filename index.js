@@ -5,7 +5,7 @@ const { Client, Intents, Collection } = require('discord.js')
 const fs = require('fs')
 
 //import files and commands
-const handleCommand = require('./handlers/command')
+const handleCommand = require('./handlers/command.js')
 
 //create Instaces
 const client = new Client({ intents: new Intents(32767)})
@@ -15,9 +15,10 @@ client.commands = new Collection();
 const commandFIles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFIles){
 	const command = require(`./commands/${file}`)
-    console.log(`J'ai load la commande: ${command.data.name}`)
 	client.commands.set(command.data.name, command)
 }
+
+
 
 //handling interractions
 client.on('interactionCreate', async interaction => {
@@ -25,6 +26,8 @@ client.on('interactionCreate', async interaction => {
 	if (interaction.isButton()){
 	}
 })
+
+
 
 client.once('ready', async () => {
     console.info(`Bot connécté en tant que ${client.user.tag} !`)
