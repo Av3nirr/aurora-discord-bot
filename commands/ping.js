@@ -26,7 +26,10 @@ module.exports = {
             .setTitle("Pong !")
             .setColor(color)
             .setDescription("Mon ping est de: **" + ping + "ms**")
-            .setFooter("Axysky, copyright Hav3nir")
+            .setFooter({
+                text: "Aurora bot"
+            })
+            .setTimestamp()
         await interaction.reply({embeds: [embed]})
     }
 

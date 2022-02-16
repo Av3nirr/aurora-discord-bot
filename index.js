@@ -22,7 +22,7 @@ for (const file of commandFIles){
 
 //handling interractions
 client.on('interactionCreate', async interaction => {
-	if (interaction.isCommand()) console.log(interaction), handleCommand(client, interaction);
+	if (interaction.isCommand()) handleCommand(client, interaction);
 	if (interaction.isButton()){
 	}
 })
