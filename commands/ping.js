@@ -12,7 +12,7 @@ module.exports = {
      * @param {CommandInteraction} interaction 
      */
     async execute(interaction) {
-        var ping = interaction.client.ws.ping
+        const ping = interaction.client.ws.ping
         if (ping > 100){
             color = "#e9aa16"
         }
